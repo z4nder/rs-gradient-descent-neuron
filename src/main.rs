@@ -21,7 +21,6 @@ fn main() {
         b0: 5.0, // bias
     };
 
-    // --- ±0.01 ---
     println!("=== ±0.01 ===\n");
     let mut naive = neuron::Neuron {
         weight: cfg.w0,
@@ -31,7 +30,6 @@ fn main() {
     let history_naive = naive.train_naive(&dataset, &cfg);
     println!("loss depois: {:.4}\n", neuron::loss(&dataset, &naive));
 
-    // --- Gradient Descent ---
     println!("=== Gradient Descent (lr={}) ===\n", cfg.lr);
     let mut gd = neuron::Neuron {
         weight: cfg.w0,
@@ -41,7 +39,6 @@ fn main() {
     let history_gd = gd.train(&dataset, &cfg);
     println!("loss depois: {:.4}\n", neuron::loss(&dataset, &gd));
 
-    // --- comparação ---
     println!("--- resultado ---\n");
     println!(
         "{:<10} {:<10} {:<14} {:<14}",
@@ -67,5 +64,5 @@ fn main() {
     plots::plot_loss_comparison(history_naive, history_gd, "assets/02_loss_comparison.png");
     plots::plot_path_on_parabola(&dataset, "assets/02_path.png");
     plots::plot_parabola(&dataset, "assets/02_parabola.png");
-plots::plot_surface_png(&dataset, "assets/02_surface.png");
+    plots::plot_surface_png(&dataset, "assets/02_surface.png");
 }

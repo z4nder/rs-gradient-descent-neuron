@@ -1,4 +1,4 @@
-use crate::neuron::{Config, Neuron, loss};
+use crate::neuron::{loss, Config, Neuron};
 use plotters::coord::types::RangedCoordf64;
 use plotters::prelude::*;
 
