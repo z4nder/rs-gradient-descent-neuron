@@ -122,7 +122,7 @@ pub fn loss(dataset: &[(f64, f64)], neuron: &Neuron) -> f64 {
 
 Agora que temos o loss, podemos calcular o loss para cada valor possível de `w` e plotar o resultado. Para isso, fixamos `b=18` como estimativa inicial, isolando o efeito de `w` no gráfico.
 
-<img src="./assets/02_parabola.png" width="700" />
+<img src="./assets/02_parabola.png" alt="parábola do loss variando w com b fixo em 18, mostrando o mínimo em w=0.92" width="700" />
 
 Podemos observar que o gráfico tem formato de **parábola** caindo até um mínimo e sobe novamente, o ponto onde **`w=0.92`** é o valor ideal para `b=18` — o **mínimo** do loss nesse dataset.
 
@@ -130,7 +130,7 @@ O objetivo do treino é encontrar os valores de **`w`** e **`b`** que reduzem ao
 
 Na prática, o loss é uma **superfície 3D** em função de `(w, b)` se tornando algo parecido com uma tigela onde ainda assim nosso objetivo é atingir o ponto mais fundo e com o gradient descent desce essa superfície simultaneamente nos dois eixos.
 
-<img src="./assets/02_surface.png" width="700" />
+<img src="./assets/02_surface.png" alt="superfície 3D do loss em função de w e b, com destaque no ponto mínimo" width="700" />
 
 ---
 
@@ -328,17 +328,17 @@ Rodamos os dois algoritmos com as mesmas condições iniciais:
 
 Com isso obtivemos os seguintes resultados
 
-<img src="./assets/02_comparison.png" width="700" />
+<img src="./assets/02_comparison.png" alt="comparação dos ajustes de ±0.01 e gradient descent sobre o dataset" width="700" />
 
 O gradient descent não fez a linha tocar em todos os pontos e isso é esperado. Os dados não seguem uma reta perfeita, então nenhuma combinação de `w` e `b` vai passar por todos. Isso é uma limitação do modelo, não do treino.
 
 O que o gradient descent faz é encontrar a **melhor reta possível** dentro dessa limitação e o loss mostra isso claramente caindo de `77` no `±0.01` para `37`.
 
-<img src="./assets/02_loss_comparison.png" width="700" />
+<img src="./assets/02_loss_comparison.png" alt="curva de loss ao longo das epochs comparando ±0.01 e gradient descent em escala log" width="700" />
 
 Outro ponto que vale destacada é a forma como o gradient descent realiza os ajustes de `w` e `b`, no gráfico abaixo podemos observar isso
 
-<img src="./assets/02_path.png" width="700" />
+<img src="./assets/02_path.png" alt="caminho de cada algoritmo na parábola epoch a epoch, mostrando passos fixos vs proporcionais" width="700" />
 
 Cada ponto é uma epoch com `±0.01` dá passos iguais o tempo todo, mesmo perto do fundo continua com a mesma força já o gradient descent desacelera conforme se aproxima e para quando o gradiente chega a zero.
 
