@@ -366,7 +366,7 @@ No próximo post: **redes neurais**, múltiplos neurônios em camadas que juntos
 
 ### Referências
 
-- [Código-fonte do projeto](https://github.com/z4nder/rs-gradient-descent)
+- [Código-fonte do projeto](https://github.com/z4nder/rs-gradient-descent-neuro)
 - [Neural Network from Scratch — vídeo que inspirou essa série](https://www.youtube.com/watch?v=GkiITbgu0V0&t=477s)
 - [Gradient Descent — Wikipedia](https://en.wikipedia.org/wiki/Gradient_descent)
 
