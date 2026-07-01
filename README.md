@@ -65,7 +65,7 @@ Já calculamos o erro de um item no dataset de forma simples no post anterior
 erro = previsto - real
 ```
 
-Mas precisamos entender o quão errado o neurônio está no conjunto inteiro de dados, e não apenas em um exemplo específico pois se ficarmos ajustando as variaveis somente com base no erro de um par do dataset acabamos prejudicando o resultado em outros então precisamos encontrar uma forma de calcular o erro médio em cima do dataset que aqui chamaremos de **`loss`**.
+Mas precisamos entender o quão errado o neurônio está no conjunto inteiro de dados, e não apenas em um exemplo específico. Se ficarmos ajustando as variáveis somente com base no erro de um par do dataset, acabamos prejudicando o resultado nos outros. Precisamos, portanto, de uma forma de calcular o erro médio sobre todo o dataset — isso é o que chamaremos de **`loss`**.
 
 Para isso precisamos da média dos erros
 
@@ -128,7 +128,7 @@ Podemos observar que o gráfico tem formato de **parábola** caindo até um mín
 
 O objetivo do treino é encontrar os valores de **`w`** e **`b`** que reduzem ao máximo o **`loss`**.
 
-Na prática, o loss é uma **superfície 3D** em função de `(w, b)` se tornando algo parecido com uma tigela onde ainda assim nosso objetivo é atingir o ponto mais fundo e com o gradient descent desce essa superfície simultaneamente nos dois eixos.
+Na prática, quando temos dois parâmetros (`w` e `b`), o loss vira uma **superfície 3D** — algo parecido com uma tigela. Nosso objetivo continua o mesmo: atingir o ponto mais fundo. O gradient descent faz isso descendo essa superfície simultaneamente nos dois eixos.
 
 <img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_surface.png" alt="superfície 3D do loss em função de w e b, com destaque no ponto mínimo" width="700" />
 
@@ -157,9 +157,9 @@ Os gradientes do loss em relação a `w` e `b` são:
 ```
 
 1. **`w`** multiplica por `x` porque `w` está ligado a `x` na equação do neurônio (`y = wx + b`).
-2. **`b`** acumula apenas o erro, pois é um deslocamento constante não depende de `x`.
+2. **`b`** acumula apenas o erro, pois é um deslocamento constante, não depende de `x`.
 
-Não precisa se assustar com essas fórmulas pois não vamos derivá-las agora.
+Não precisa se assustar com essas fórmulas, pois não vamos derivá-las agora.
 
 Por enquanto, basta entender que elas medem a inclinação do erro em relação a `w` e `b`, indicando para qual direção devemos mover os parâmetros e o quão forte deve ser essa atualização.
 
@@ -342,9 +342,9 @@ Outro ponto que vale destacar é a forma como o gradient descent realiza os ajus
 
 Cada ponto é uma epoch. Com `±0.01` dá passos iguais o tempo todo, mesmo perto do fundo continua com a mesma força, já o gradient descent desacelera conforme se aproxima e para quando o gradiente chega a zero.
 
-Ainda sim a linha não tocou perfeitamente todos os pontos e para isso seriam necessários mais parâmetros e mais neurônios, uma rede neural. Isso vem nas próximas fases.
+Ainda assim a linha não tocou perfeitamente todos os pontos, para isso seriam necessários mais parâmetros e mais neurônios, ou seja, uma rede neural. Isso vem nas próximas fases.
 
-> Para a linha tocar em todos os pontos seriam necessários mais parâmetros mais neurônios, uma rede neural. Isso vem nas próximas fases.
+> Para a linha tocar em todos os pontos seriam necessários mais parâmetros e mais neurônios, uma rede neural. Isso vem nas próximas fases.
 
 ---
 
