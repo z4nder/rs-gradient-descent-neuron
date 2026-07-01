@@ -1,7 +1,7 @@
-## IA do zero: Gradient Descent — opimizando seu neurônio em rust
+## IA do zero: Gradient Descent — otimizando seu neurônio em rust
 
 <p align="center">
-  <img src="assets/banner.png" alt="banner do projeto" width="1000" />
+  <img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/banner.png" alt="banner do projeto" width="1000" />
 </p>
 
 Você já usou o GPT, mas sabe o que existe dentro dele? Neste post vamos ensinar o neurônio a melhorar suas previsões de forma inteligente usando **gradient descent**, o algoritmo que está por trás de praticamente todo o aprendizado de máquina moderno.
@@ -91,14 +91,14 @@ loss = (1/n) × Σ (previsto - real)²
 Elevar ao quadrado tem dois efeitos:
 
 1. **Remove o sinal:** erros positivos e negativos não se cancelam mais
-2. **Penaliza erros¨ grandes** um erro de 10 vira 100, um erro de 2 vira 4
+2. **Penaliza erros grandes:** um erro de 10 vira 100, um erro de 2 vira 4
 
 ```
 erro = 2  → contribuição = 4
 erro = 10 → contribuição = 100
 ```
 
-Um erro cinco vezes maior gera uma penalização vinte e cinco vezes maiorm o loss deve gritar quando o neurônio está muito errado.
+Um erro cinco vezes maior gera uma penalização vinte e cinco vezes maior, o loss deve gritar quando o neurônio está muito errado.
 
 ```rust
 pub fn loss(dataset: &[(f64, f64)], neuron: &Neuron) -> f64 {
@@ -122,15 +122,15 @@ pub fn loss(dataset: &[(f64, f64)], neuron: &Neuron) -> f64 {
 
 Agora que temos o loss, podemos calcular o loss para cada valor possível de `w` e plotar o resultado. Para isso, fixamos `b=18` como estimativa inicial, isolando o efeito de `w` no gráfico.
 
-<img src="./assets/02_parabola.png" alt="parábola do loss variando w com b fixo em 18, mostrando o mínimo em w=0.92" width="700" />
+<img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_parabola.png" alt="parábola do loss variando w com b fixo em 18, mostrando o mínimo em w=0.92" width="700" />
 
-Podemos observar que o gráfico tem formato de **parábola** caindo até um mínimo e sobe novamente, o ponto onde **`w=0.92`** é o valor ideal para `b=18` — o **mínimo** do loss nesse dataset.
+Podemos observar que o gráfico tem formato de **parábola** caindo até um mínimo e sobe novamente, o ponto onde **`w=0.92`** é o valor ideal para `b=18`, o **mínimo** do loss nesse dataset.
 
 O objetivo do treino é encontrar os valores de **`w`** e **`b`** que reduzem ao máximo o **`loss`**.
 
 Na prática, o loss é uma **superfície 3D** em função de `(w, b)` se tornando algo parecido com uma tigela onde ainda assim nosso objetivo é atingir o ponto mais fundo e com o gradient descent desce essa superfície simultaneamente nos dois eixos.
 
-<img src="./assets/02_surface.png" alt="superfície 3D do loss em função de w e b, com destaque no ponto mínimo" width="700" />
+<img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_surface.png" alt="superfície 3D do loss em função de w e b, com destaque no ponto mínimo" width="700" />
 
 ---
 
@@ -139,7 +139,7 @@ Na prática, o loss é uma **superfície 3D** em função de `(w, b)` se tornand
 Você está em algum ponto da parábola e quer chegar no fundo, o **gradiente** é a inclinação da curva naquele ponto e ele te diz duas coisas:
 
 - **Direção:** se a curva está subindo, você vai na direção oposta
-- **Magnitude:**curva íngreme (longe do fundo) → passo grande. Quase plana (perto do fundo) → passo pequeno
+- **Magnitude:** curva íngreme (longe do fundo) → passo grande. Quase plana (perto do fundo) → passo pequeno
 
 ```
 w=0   → inclinação íngreme → passo grande
@@ -169,7 +169,7 @@ Na implementação, veremos que calcular os gradientes é bem mais simples do qu
 
 ### 6. Gradient Descent — descendo a parábola <a name="6"></a>
 
-Agora que entendemos que precisamos alterar `w` e `b` em direcao ao mínimo podemos aplicar essa formula
+Agora que entendemos que precisamos alterar `w` e `b` em direção ao mínimo podemos aplicar essa fórmula
 
 ```
 erro = previsto - real
@@ -239,7 +239,7 @@ weight = 10.0 - 0.0001 * 140    → 9.986
 bias   = 10.0 - 0.0001 * (-30)  → 10.003
 ```
 
-Chegamos em um ajuste de `w=10` para `w=9.986` e `b=10` para `b=10.003`. Com `∂L/∂w = +140` o gradiente é positivo, então diminuímos `w`, o neurônio estava prevendo demais em `x=10`. Com `∂L/∂b = -30` o gradiente é negativo, então aumentamos `b, a maioria dos pontos estava sendo subestimada.
+Chegamos em um ajuste de `w=10` para `w=9.986` e `b=10` para `b=10.003`. Com `∂L/∂w = +140` o gradiente é positivo, então diminuímos `w`, o neurônio estava prevendo demais em `x=10`. Com `∂L/∂b = -30` o gradiente é negativo, então aumentamos `b`, a maioria dos pontos estava sendo subestimada.
 
 ### 7. Implementando o Gradient Descent <a name="7"></a>
 
@@ -328,19 +328,19 @@ Rodamos os dois algoritmos com as mesmas condições iniciais:
 
 Com isso obtivemos os seguintes resultados
 
-<img src="./assets/02_comparison.png" alt="comparação dos ajustes de ±0.01 e gradient descent sobre o dataset" width="700" />
+<img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_comparison.png" alt="comparação dos ajustes de ±0.01 e gradient descent sobre o dataset" width="700" />
 
 O gradient descent não fez a linha tocar em todos os pontos e isso é esperado. Os dados não seguem uma reta perfeita, então nenhuma combinação de `w` e `b` vai passar por todos. Isso é uma limitação do modelo, não do treino.
 
 O que o gradient descent faz é encontrar a **melhor reta possível** dentro dessa limitação e o loss mostra isso claramente caindo de `77` no `±0.01` para `37`.
 
-<img src="./assets/02_loss_comparison.png" alt="curva de loss ao longo das epochs comparando ±0.01 e gradient descent em escala log" width="700" />
+<img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_loss_comparison.png" alt="curva de loss ao longo das epochs comparando ±0.01 e gradient descent em escala log" width="700" />
 
-Outro ponto que vale destacada é a forma como o gradient descent realiza os ajustes de `w` e `b`, no gráfico abaixo podemos observar isso
+Outro ponto que vale destacar é a forma como o gradient descent realiza os ajustes de `w` e `b`, no gráfico abaixo podemos observar isso
 
-<img src="./assets/02_path.png" alt="caminho de cada algoritmo na parábola epoch a epoch, mostrando passos fixos vs proporcionais" width="700" />
+<img src="https://raw.githubusercontent.com/z4nder/rs-gradient-descent-neuron/main/assets/02_path.png" alt="caminho de cada algoritmo na parábola epoch a epoch, mostrando passos fixos vs proporcionais" width="700" />
 
-Cada ponto é uma epoch com `±0.01` dá passos iguais o tempo todo, mesmo perto do fundo continua com a mesma força já o gradient descent desacelera conforme se aproxima e para quando o gradiente chega a zero.
+Cada ponto é uma epoch. Com `±0.01` dá passos iguais o tempo todo, mesmo perto do fundo continua com a mesma força, já o gradient descent desacelera conforme se aproxima e para quando o gradiente chega a zero.
 
 Ainda sim a linha não tocou perfeitamente todos os pontos e para isso seriam necessários mais parâmetros e mais neurônios, uma rede neural. Isso vem nas próximas fases.
 
