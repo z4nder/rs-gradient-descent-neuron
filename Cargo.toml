@@ -1,0 +1,8 @@
+[package]
+name = "rs-gradient-descent-neuron"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+plotters = "0.3"
+rand = "0.8"
